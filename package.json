@@ -1,5 +1,5 @@
 {
-  "name": "PROJECT-NAME",
+  "name": "PROJECT_NAME",
   "version": "0.1.0",
   "description": "$PROJECT_DESCRIPTION$",
   "keywords": [],
@@ -14,48 +14,52 @@
   },
   "homepage": "https://github.com/mearns/PROJECT-NAME#readme",
   "engines": {
-    "node": "^10.9.0"
+    "node": "^12.14.0"
   },
   "main": "src/index.js",
   "files": [
     "src/**/*"
   ],
   "scripts": {
-    "clean": "rimraf dist/ build/ coverage/ .nyc_output/",
+    "clean": "rimraf dist/ build/ coverage/ reports/ public/",
     "pretty": "pretty-quick --staged",
     "pretty-all": "prettier --write lib/**/*.js pages/**/*.js components/**/*.js test/**/*.js ./*.js ./*.json ./*.yaml ./*.yml",
-    "check": "eslint lib/ pages/ components/ test/ --ext .js --format codeframe",
-    "test": "nyc npm run test-only",
-    "test-only": "mocha test/src/",
-    "verify": "npm run check && npm run test",
+    "check": "eslint --max-warnings 0 --no-error-on-unmatched-pattern --format codeframe lib/ pages/ components/ test/ dev-scripts/ \"./*.js\"",
+    "test": "jest --coverage",
+    "test-only": "jest",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "verify": "npm run check && npm run test",
+    "public": "npm-run-all \"public:*\"",
+    "public:logo": "mkdirp public && copyfiles logo.png public/",
+    "public:reports": "npm-run-all \"public:reports:*\"",
+    "public:reports:copy": "mkdirp public && copyfiles \"reports/**/*\" public/",
+    "public:reports:copy-logo": "mkdirp public && copyfiles logo.png public/reports/",
+    "public:reports:index": "mkdirp public && node ./dev-scripts/render-page-template.js dev-scripts/resources/pages/index.hbs > public/index.html"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run pretty -s"
     }
   },
+  "logo": "logo.png",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.18.0",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^2.3.0",
-    "mocha": "^6.1.4",
-    "node": "^10.9.0",
-    "nyc": "^14.1.1",
-    "prettier": "^1.17.1",
-    "pretty-quick": "^1.10.0",
-    "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0"
+    "@actions/core": "^1.2.6",
+    "copyfiles": "^2.4.0",
+    "eslint": "^7.13.0",
+    "eslint-config-mearns": "git+https://github.com/mearns/eslint-config-mearns.git#v0.3.0",
+    "handlebars": "^4.7.6",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "jest-junit": "^12.0.0",
+    "jest-stare": "^2.2.0",
+    "marked": "^1.2.9",
+    "mkdirp": "^1.0.4",
+    "node": "^13.14.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.2"
   },
   "dependencies": {
     "axios": "^0.21.1",
