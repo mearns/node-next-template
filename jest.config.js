@@ -1,13 +1,17 @@
 module.exports = {
   roots: ["test/unit"],
   transform: {
-    "^.+\\.ts$": "ts-jest"
+    "^.+\\.ts$": "ts-jest",
   },
   collectCoverageFrom: [
     "lib/**/*.js",
+    "lib/**/*.ts",
     "components/**/*.js",
+    "components/**/*.ts",
     "pages/**/*.js",
-    "test/test-utils/**/*.js"
+    "pages/**/*.ts",
+    "test/test-utils/**/*.js",
+    "test/test-utils/**/*.ts",
   ],
   coverageDirectory: "reports/coverage/",
   coverageReporters: ["json", "lcov", "text", "clover", "cobertura"],
@@ -17,8 +21,8 @@ module.exports = {
       "jest-junit",
       {
         outputDirectory: "reports",
-        outputName: "xunit.xml"
-      }
+        outputName: "xunit.xml",
+      },
     ],
     [
       "jest-stare",
@@ -28,8 +32,8 @@ module.exports = {
         resultJson: "data.json",
         report: true,
         reportSummary: true,
-        coverageLink: "../coverage/lcov-report/index.html"
-      }
-    ]
-  ]
+        coverageLink: "../coverage/lcov-report/index.html",
+      },
+    ],
+  ],
 };
