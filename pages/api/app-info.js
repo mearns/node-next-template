@@ -1,9 +1,10 @@
 import packageData from "../../package.json";
 
-export default (req, res) => {
+const handler = (req, res) => {
   res.status(200).json({
     name: packageData.name,
     version: packageData.version,
     buildInfo: packageData.buildInfo,
   });
 };
+export default handler;

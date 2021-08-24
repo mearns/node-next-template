@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import React from "react";
 import axios from "axios";
 
-export default function About() {
+const About = () => {
   const [appInfo, setAppInfoResp] = React.useState(null);
   React.useEffect(() => {
     (async () => {
@@ -31,4 +31,5 @@ export default function About() {
       </p>
     </div>
   );
-}
+};
+export default About;

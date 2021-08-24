@@ -1,10 +1,11 @@
 import Header from "../components/Header";
 
-export default function Index() {
+const Index = () => {
   return (
     <div>
       <Header />
       <p>Hello Next.js</p>
     </div>
   );
-}
+};
+export default Index;
