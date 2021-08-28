@@ -1,0 +1,35 @@
+:root {
+  --page-padding: 20px;
+
+  --light: #f4fafc;
+  --dark: #072026;
+  --ultra-dark: #031013;
+
+  --primary-light: hsla(199, 64%, 73%, 1);
+  --primary: hsla(192, 70%, 43%, 1);
+  --primary-dark: hsla(200, 95%, 14%, 1);
+  --secondary: hsla(43, 100%, 51%, 1);
+  --tirtiary: hsla(32, 100%, 49%, 1);
+}
+
+body {
+  margin: 0;
+  background-color: var(--light);
+  color: var(--dark);
+  font-size: 16px;
+  line-height: 19px;
+  font-family: Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+a:hover {
+  text-shadow: -0.06ex 0 currentColor, 0.06ex 0 currentColor;
+}
+
+table {
+  border-collapse: collapse;
+}
