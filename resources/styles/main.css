@@ -1,21 +1,50 @@
 :root {
+  --nearly-white: #f4fafc;
+  --blue-ink: #072026;
+  --nearly-black: #031013;
+
+  --light-cornflower-blue: hsla(199, 64%, 73%, 1);
+  --blue-green: hsla(192, 70%, 43%, 1);
+  --prussian-blue: hsla(200, 95%, 14%, 1);
+  --honey-yellow: hsla(43, 100%, 51%, 1);
+  --orange: hsla(32, 100%, 49%, 1);
+}
+
+html {
   --page-padding: 20px;
 
-  --light: #f4fafc;
-  --dark: #072026;
-  --ultra-dark: #031013;
+  --light: var(--nearly-white);
+  --dark: var(--blue-ink);
+  --ultra-dark: var(--nearly-black);
 
-  --primary-light: hsla(199, 64%, 73%, 1);
-  --primary: hsla(192, 70%, 43%, 1);
-  --primary-dark: hsla(200, 95%, 14%, 1);
-  --secondary: hsla(43, 100%, 51%, 1);
-  --tirtiary: hsla(32, 100%, 49%, 1);
+  --primary-light: var(--light-cornflower-blue);
+  --primary: var(--blue-green);
+  --primary-dark: var(--prussian-blue);
+  --secondary: var(--honey-yellow);
+  --tirtiary: var(--orange);
+
+  --background: var(--light);
+  --foreground: var(--dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* TODO: better dark scheme. I think instead of calling them "primary-light" and "primary-dark", I need a somewhat more functional name for them. */
+  html {
+    --primary-light: var(--blue-green);
+    --primary: var(--prussian-blue);
+    --primary-dark: var(--prussian-blue);
+    --secondary: var(--honey-yellow);
+    --tirtiary: var(--orange);
+
+    --background: var(--ultra-dark);
+    --foreground: var(--light);
+  }
 }
 
 body {
   margin: 0;
-  background-color: var(--light);
-  color: var(--dark);
+  background-color: var(--background);
+  color: var(--foreground);
   font-size: 16px;
   line-height: 19px;
   font-family: Arial, sans-serif;
