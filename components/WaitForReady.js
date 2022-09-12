@@ -6,13 +6,15 @@ import ErrorPanel from "./ErrorPanel";
 import Loading from "./Loading";
 import useRenderer from "../lib/use-renderer";
 
+const defaultErrorRenderFunc = (error) => <ErrorPanel error={error} />;
+
 const WaitForReady = ({
   ready,
   error = null,
   data,
   quiet = false,
   loading = <Loading />,
-  errorDisplay = (error) => <ErrorPanel error={error} />,
+  errorDisplay = defaultErrorRenderFunc,
   children,
 }) => {
   const render = useRenderer(children);

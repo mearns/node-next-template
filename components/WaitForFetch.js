@@ -8,12 +8,14 @@ import httpFetch from "../lib/http-client";
 import useFetchedData from "../lib/use-fetched-data";
 import WaitForReady from "./WaitForReady";
 
+const defaultErrorRenderFunc = (error) => <ErrorPanel error={error} />;
+
 const WaitForFetch = ({
   url,
   fetch = httpFetch,
   quiet = false,
   loading = <Loading />,
-  errorDisplay = (error) => <ErrorPanel error={error} />,
+  errorDisplay = defaultErrorRenderFunc,
   children,
 }) => {
   const { ready, data, error } = useFetchedData(url, { fetch });
